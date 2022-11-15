@@ -24,9 +24,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # this variable, db, will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
 
-class Alerts(db.Model):
-    query = db.Query = 'Select * FROM alerts.Alerts '
-    # al
+# class Alerts(db.Model):
+#     query = db.Query = 'Select * FROM alerts.Alerts '
+#     # al
 
 @app.route('/')
 def hello_world():  # put application's code here
