@@ -8,7 +8,7 @@ app = Flask(__name__)
 counter = 0
 APP_ENV = 'dev';
 
-db_name = 'nevomo_db'
+db_name = 'rdb'
 db_pass = 'Kris12#$'
 db_user = 'Kris'
 db_url = '51.158.130.90'
@@ -23,11 +23,22 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # this variable, db, will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
+engine  = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+connection = engine.connect()
+value = '2'
+value1 = 'kupa'
+query = 'select * from public."Alerts"'
+
+results = connection.execute(query)
+
+print(results)
 
 # class Alerts(db.Model):
-#     query = db.Query = 'Select * FROM alerts.Alerts '
+#     query = db.Query = 'SELECT * FROM public."Alerts"'
 #     # al
 
+
+print ('działam')
 @app.route('/')
 def hello_world():  # put application's code here
     print(app.config['SQLALCHEMY_DATABASE_URI'])
@@ -56,4 +67,6 @@ def generate_subpage(pageName):  # put application's code here
         return render_template("main/404.html")
 
 if __name__ == '__main__':
+
     app.run
+    print('poszedłem juz tutaj')
