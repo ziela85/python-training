@@ -3,6 +3,7 @@ from Answer import load_db
 from flask_sqlalchemy import SQLAlchemy
 from models import *
 from sqlalchemy import create_engine
+from controllers.RestController import RestController
 
 app = Flask(__name__)
 counter = 0
@@ -65,6 +66,31 @@ def generate_subpage(pageName):  # put application's code here
         return render_template("Pages/" + pageName + ".html", templateName = pageName)
     except:
         return render_template("main/404.html")
+
+@app.route('/rest/', methods=['GET'])
+def rest_query():
+    try:
+        rC = RestController()
+        rC.query()
+
+        return 1
+    except OSError as err:
+        print("OS Error: "+err)
+        return render_template("main/500.html")
+
+@app.route('/rest/', methods=['POST'])
+def rest_update():
+    try:
+        return 1
+    except:
+        return render_template("main/500.html")
+
+@app.route('/rest/', methods=['PUT'])
+def rest_put():
+    try:
+        return 1
+    except:
+        return render_template("main/500.html")
 
 if __name__ == '__main__':
 
